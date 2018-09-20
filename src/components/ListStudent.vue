@@ -23,6 +23,8 @@
 </template>
 
 <script>
+  import StudentService from '../shared/service/StudentService'
+
 export default {
   name: 'ListStudent',
   data () {
@@ -48,7 +50,23 @@ export default {
           name: 'Anhvv4',
           email: 'Anhvv4@gmail.com'
         }
-      ]
+      ],
+      totalItems: 0,
+      itemsPerPage: 10,
+      currentPage: 1
+    }
+  },
+  created () {
+    this.getStudents()
+  },
+  methods: {
+    getStudents () {
+      StudentService.getStudentList(this.currentPage, this.itemsPerPage)
+        .then(response => {
+          console.log(response)
+          this.students = response
+          // this.totalItems = response.totalItems
+        })
     }
   }
 }

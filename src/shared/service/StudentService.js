@@ -2,13 +2,13 @@ import Vue from 'vue'
 
 export default {
   getStudentList (pageIndex, pageSize) {
-    let config = {
-      params: {
-        pageIndex: pageIndex,
-        pageSize: pageSize
-      }
-    }
-    return Vue.http.get('students', config)
+    // let config = {
+    //   params: {
+    //     pageIndex: pageIndex,
+    //     pageSize: pageSize
+    //   }
+    // }
+    return Vue.http.get('students/')
       .then(response => response.data)
       .catch(error => console.log(error))
   },
@@ -17,7 +17,7 @@ export default {
       name: name,
       address: address
     }
-    return Vue.http.post('students', params)
+    return Vue.http.post('students/', params)
       .then(response => response.data)
       .catch(error => console.log(error))
   },
@@ -27,7 +27,7 @@ export default {
         id: id
       }
     }
-    return Vue.http.get('student', config)
+    return Vue.http.get('student/', config)
       .then(response => response.data)
       .catch(error => console.log(error))
   },
@@ -37,7 +37,7 @@ export default {
       name: name,
       address: address
     }
-    return Vue.http.put('student', params)
+    return Vue.http.put('student/', params)
       .then(response => response.data)
       .catch(error => console.log(error))
   },
@@ -47,7 +47,7 @@ export default {
         id: id
       }
     }
-    return Vue.http.delete('student', config)
+    return Vue.http.delete('student/', config)
       .then(response => response.data)
       .catch(error => console.log(error))
   }

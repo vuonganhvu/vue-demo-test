@@ -1,7 +1,7 @@
 <template>
   <header id="header">
     <nav class="navbar navbar-light bg-dark text-dark">
-      <span class="navbar-brand font-weight-bold">
+      <span class="navbar-brand font-weight-bold" @click="gotoHomePage">
         Student
       </span>
       <ul class="nav">
@@ -18,7 +18,12 @@
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+  methods: {
+    gotoHomePage () {
+      this.$router.push('/')
+    }
+  }
 }
 </script>
 
