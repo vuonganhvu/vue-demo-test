@@ -27,14 +27,14 @@
          <div class="form-group">
            <label for="email">Email:</label>
            <input type="email" class="form-control" id="email"
-                  v-model="review.reviewerEmail"
+                  v-model="review.passportNumber"
                   placeholder="Enter your email address">
          </div>
 
          <div class="form-group">
            <label for="name">Name:</label>
            <input type="text" class="form-control" id="name"
-                  v-model="review.reviewerName"
+                  v-model="review.name"
                   placeholder="Enter your name">
          </div>
 
@@ -97,8 +97,8 @@ export default {
       currentPage: 1,
       show: false,
       review: {
-        reviewerEmail: null,
-        reviewerName: null,
+        passportNumber: null,
+        name: null,
         rating: null,
         message: null
       }
@@ -109,10 +109,7 @@ export default {
   },
   methods: {
     getStudents () {
-      axios.get('http://localhost:8080/api/students/', {
-        title: this.postTitle,
-        body: this.postBody
-      }).then((response) => {
+      axios.get('http://localhost:8080/api/students/').then((response) => {
         this.students = response.data
       })
         .catch((e) => {
@@ -127,7 +124,13 @@ export default {
     },
     onSubmit () {
       console.log('Submit review')
-      this.$router.reload()
+      axios.post('http://localhost:8080/api/students/', this.review).then((response) => {
+        this.getStudents()
+        this.show = false
+      })
+        .catch((e) => {
+          console.error(e)
+        })
     },
     chooseStudent (id) {
       console.log('click view ' + id)
