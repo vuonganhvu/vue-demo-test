@@ -7,6 +7,7 @@ import VueResource from 'vue-resource'
 import constant from './shared/constant'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import Toasted from 'vue-toasted'
 
 Vue.config.productionTip = false
 
@@ -15,6 +16,12 @@ Vue.http.options.root = constant.apiEndpoint
 Vue.component('app-header', Header)
 Vue.component('app-footer', Footer)
 
+// Register toaster plugin
+Vue.use(Toasted, {
+  position: 'bottom-center',
+  duration: 1500,
+  closeOnSwipe: true
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

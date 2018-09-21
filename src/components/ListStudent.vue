@@ -127,6 +127,7 @@ export default {
       axios.post('http://localhost:8080/api/students/', this.review).then((response) => {
         this.getStudents()
         this.show = false
+        this.$toasted.success('Your review is submitted successfully!', {onComplete: this.reset})
       })
         .catch((e) => {
           console.error(e)
@@ -135,6 +136,14 @@ export default {
     chooseStudent (id) {
       console.log('click view ' + id)
       this.show = true
+    },
+    reset () {
+      this.review = {
+        passportNumber: null,
+        name: null,
+        rating: null,
+        message: null
+      }
     }
   }
 }
